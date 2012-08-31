@@ -1,0 +1,38 @@
+<%= form_for(@interface) do |f| %>
+  <% if @interface.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@interface.errors.count, "error") %> prohibited this interface from being saved:</h2>
+
+      <ul>
+      <% @interface.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    接口中文描述<br />
+    <%= f.text_field :name_cn,:placeholder=>"例:获取商品列表.."%>
+  </div>
+  <div class="field">
+    接口名称<br />
+    <%= f.text_field :name_en,:placeholder=>"例:getGoodsList" %>
+  </div>
+  <div class="field">
+    备注<br />
+    <%= f.text_field :remark,:placeholder=>"接口功能描述.."%>
+  </div>
+  <div class="field">
+    接口类型<br />
+    <%= f.text_field :type %>
+    <select>
+    	<option default>http</option>
+    	<option>soap</option>
+    	<option>tcp/socket</option>
+    </select>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

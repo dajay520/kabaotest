@@ -1,0 +1,29 @@
+<h1>Listing interfaces</h1>
+
+<table>
+  <tr>
+    <th>Name cn</th>
+    <th>Name en</th>
+    <th>Remark</th>
+    <th>Type</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @interfaces.each do |interface| %>
+  <tr>
+    <td><%= interface.name_cn %></td>
+    <td><%= interface.name_en %></td>
+    <td><%= interface.remark %></td>
+    <td><%= interface.type %></td>
+    <td><%= link_to 'Show', interface %></td>
+    <td><%= link_to 'Edit', edit_interface_path(interface) %></td>
+    <td><%= link_to 'Destroy', interface, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Interface', new_interface_path %>

@@ -1,0 +1,25 @@
+<div  class="alert alert-success"><%= notice %></div>
+
+<p>
+  <b>Name cn:</b>
+  <%= @interface.name_cn %>
+</p>
+
+<p>
+  <b>Name en:</b>
+  <%= @interface.name_en %>
+</p>
+
+<p>
+  <b>Remark:</b>
+  <%= @interface.remark %>
+</p>
+
+<p>
+  <b>Type:</b>
+  <%= @interface.type %>
+</p>
+
+
+<%= link_to 'Edit', edit_interface_path(@interface) %> |
+<%= link_to 'Back', interfaces_path %>
