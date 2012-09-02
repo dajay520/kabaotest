@@ -6,9 +6,15 @@
 	</div>
 	<div class='well'>
 	<span class="badge">1</span>添加的条件中文说明
-	<div class='row-fluid'>
-	条件名称:<input type='text' name='condition_name'/>
-	</div>
+		<div id='condition_name_div' class="control-group">
+	            <label class="control-label" for="focusedInput">
+	            	条件名称
+	            </label>
+	            <div class="controls">
+	              <input class="input-xlarge focused" id="condition_name" name="condition_name"  type="text" placeholder="关于条件的一些描述">
+				  <span id='condition_name_hint' class="help-inline"></span>
+	            </div>
+		</div>
 	</div>
 	<div class='well'>
 		<span class="badge badge-success">2</span>当请求的条件满足以下条件时
@@ -32,9 +38,10 @@
 		<span class="badge badge-warning">3</span>添加返回值
 		
 		<div class='row-fulid'>
-          <div class="control-group">
+          <div id='response_value_div' class="control-group">
             <div class="controls">
-              <textarea class="input-xlarge" id="textarea" name='response_value' rows="3"></textarea>
+              <textarea class="input-xlarge" id="response_value" name='response_value' rows="3"></textarea>
+			  <span id='response_value_hint' class="help-inline"></span>
 			  <button class='btn' onclick='return false;'>生成JSON</button>
             </div>
           </div>
@@ -65,8 +72,11 @@
 		})
 
 		$("#submit_create").click(function(){
+			if(!validate()){
+				return false;
+			}
 			$("#in_json").attr("value",getin());
-			alert($("#in_json").attr("value"));
+		
 		});
 		
 		$("#getjson").click(getin);
@@ -81,11 +91,34 @@
 				}
 			});
 			obj = obj.substr(0,obj.length-1)+'}';
-			alert(obj);
+			
 			return obj;
 		}
 		function del(node){
 			$(node).parent('div').parent('div').remove();		
+		}
+		
+		function validate(){
+			var result=true;
+			if($('#condition_name').attr('value')==''){
+				$('#condition_name_div').addClass('control-group error');
+				$('#con_hint').remove();
+				$('#condition_name_hint').append('<p id="con_hint">不能为空，随便填点什么吧。<p>')
+				result = false;
+			}else{
+				$('#condition_name_div').removeClass('control-group error');
+				$('#con_hint').remove();
+			}
+			if($('#response_value').attr('value')==''){
+				$('#response_value_div').addClass('control-group error');
+				$('#res_hint').remove();
+				$('#response_value_hint').append('<p id="res_hint">响应内容不能为空。<p>')
+				result = false;
+			}else{
+				$('#response_value_div').removeClass('control-group error');
+				$('#res_hint').remove();
+			}
+			return result;
 		}
 	});
 	
