@@ -53,23 +53,25 @@
 								接口列表
 							</li>
 							<% session[:menuList].each do |inter| %>
-							<li>
-								<a><%=inter.name_cn%></a>
+							<li <%if inter.id.to_s==session[:selected]%>class='active'<%end%>>
+								<a href='/config/<%=inter.id%>'><%=inter.name_cn%></a>
 							</li>
 							<% end%>
 							
 							<li class="nav-header">
 								接口管理
 							</li>
-							<li >
+							<li <%if 'new'==session[:m_selected]%>class='active'<%end%>>
 								<a href="/interfaces/new">新增接口</a>
+							</li>
+							<li <%if 'index'==session[:m_selected]%>class='active'<%end%>>
 								<a href="/interfaces/">修改接口</a>
 							</li>
 						</ul>
 					</div><!--/.well -->
 				</div><!--/span-->
 				<div class="span9">
-					<div class="hero-unit">
+					<div class="hero-unit" style='padding:30px'>
 						<%= yield %>
 					</div>
 				</div><!--/span-->
@@ -77,7 +79,7 @@
 			<hr>
 			<footer>
 				<p>
-					&copy; alipay 2012 develop:dajay
+					&copy; alipay 2012 developer:dajay mail:dajay520@gmail.com
 				</p>
 			</footer>
 		</div>

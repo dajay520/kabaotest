@@ -1,7 +1,7 @@
-<%= form_for(@interface) do |f| %>
+<%= form_for(@interface,:class=>'form-horizontal') do |f| %>
   <% if @interface.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@interface.errors.count, "error") %> prohibited this interface from being saved:</h2>
+      <h2><%= pluralize(@interface.errors.count, "") %> 个校验错误:</h2>
 
       <ul>
       <% @interface.errors.full_messages.each do |msg| %>
@@ -33,6 +33,6 @@
     </select>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit :class=>'btn' %>
   </div>
 <% end %>

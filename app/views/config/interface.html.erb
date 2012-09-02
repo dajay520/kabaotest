@@ -1,0 +1,45 @@
+<div class='well'>
+	<span class="label label-info">
+		已添加条件响应列表：
+	</span>
+	<br/>
+	<table class="table table-striped">
+		<tr>
+		<th>
+			条件名称
+		</th>
+	    <th>
+	    	当请求参数为:
+	    </th>
+	    <th>
+	    	响应数据
+	    </th>
+	    <th>
+	    	操作
+	    </th>
+	  </tr>
+	<% 
+	if @con and @con.size != 0
+		@con.each do |con|
+	%>
+		<tr>
+			<td><%=con.name%></td>
+			<td><%=con.in%></td>
+			<td><%=con.out%></td>
+			<td><a class="btn btn-danger" href='/config/<%=params[:id]%>/condition/del/<%=con.id%>'><i class="icon-trash icon-white"></i> 删除</a></td>
+		</tr>
+	<% 
+		end
+	else
+	%> 
+	<td colspan='4'>
+		<span  class="label label-important">
+			暂时还没有添加任何响应条件
+		</span>
+		</td>
+	<%	
+	end
+	%>
+	</table>
+</div>
+	<%=render 'add_condition_params'%>

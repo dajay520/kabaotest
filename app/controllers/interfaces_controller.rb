@@ -3,7 +3,8 @@ class InterfacesController < ApplicationController
   # GET /interfaces.json
   def index
     @interfaces = Interface.all
-
+    session[:m_selected]='index'
+    session[:selected]=nil
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @interfaces }
@@ -25,7 +26,8 @@ class InterfacesController < ApplicationController
   # GET /interfaces/new.json
   def new
     @interface = Interface.new
-
+    session[:m_selected]='new'
+    session[:selected]=nil
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @interface }
@@ -41,7 +43,6 @@ class InterfacesController < ApplicationController
   # POST /interfaces.json
   def create
     @interface = Interface.new(params[:interface])
-
     respond_to do |format|
       if @interface.save
         format.html { redirect_to @interface, notice: 'Interface was successfully created.' }

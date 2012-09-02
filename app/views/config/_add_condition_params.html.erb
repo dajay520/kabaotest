@@ -1,0 +1,98 @@
+
+<form id='add_form' method='post' action='/config/create/<%=params[:id]%>'>
+	<input type='hidden' id='in_json' name='in' value='2'>
+	<div class='row-fluid'>
+	<span class="label label-info">添加响应条件:</span>
+	</div>
+	<div class='well'>
+	<span class="badge">1</span>添加的条件中文说明
+	<div class='row-fluid'>
+	条件名称:<input type='text' name='condition_name'/>
+	</div>
+	</div>
+	<div class='well'>
+		<span class="badge badge-success">2</span>当请求的条件满足以下条件时
+		<div class='row-fluid'>
+			<button  id='addc' class='btn' >添加一个条件</button>
+				<input type="checkbox" id="ocb" value="option1">
+				不使用任何请求参数作为响应条件
+			<button id='getjson' class='btn'>
+				测试一下JSON
+			</button>
+
+		</div>
+		<div id='dynamic_gen' class='row-fluid'>
+			<div class='row-fluid'>
+			<div class='span3'>参数名称:<input type="text" name="param_name[]" class='span8'/></div>
+			<div class='span4'>参数值:<input type="text" name="param_value[]" class='span12'/></div>
+			</div>
+		</div>
+	</div>
+	<div class='well'>
+		<span class="badge badge-warning">3</span>添加返回值
+		
+		<div class='row-fulid'>
+          <div class="control-group">
+            <div class="controls">
+              <textarea class="input-xlarge" id="textarea" name='response_value' rows="3"></textarea>
+			  <button class='btn' onclick='return false;'>生成JSON</button>
+            </div>
+          </div>
+
+		</div>
+		<div class='row-fulid'>
+			<button class='btn' id='submit_create'>提交</button>
+		</div>
+	</div>
+</form>
+
+<script>
+	$(document).ready(function() {
+		$("#addc").click(function(){
+			$('#dynamic_gen').append('<div class="row-fluid"><div class="span3 ">参数名称:<input type="text" name="param_name[]" class="span8"/></div>'+
+			'<div class="span4">参数值:<input type="text" name="param_value" class="span12"/></div>' +
+			'<div class="span3"><br/><button class="btn btn-danger" onclick="del(this);return false;"><i class="icon-trash icon-white"></i> 删除</button></div></div>');
+			return false;
+		});
+		$("#ocb").click(function(){
+			if(this.checked){
+				$("#addc").attr('disabled',true);
+				$('#dynamic_gen').hide(200);
+			}else{
+				$("#addc").attr('disabled',false);
+				$('#dynamic_gen').show(200);
+			}
+		})
+
+		$("#submit_create").click(function(){
+			$("#in_json").attr("value",getin());
+			alert($("#in_json").attr("value"));
+		});
+		
+		$("#getjson").click(getin);
+		
+		function getin(){
+			var obj = '{';
+			$("#dynamic_gen").find('input[type="text"]').each(function(p){
+				if(p%2==0){
+					obj+='"'+this.value+'":';
+				}else{
+					obj+='"'+this.value+'",';
+				}
+			});
+			obj = obj.substr(0,obj.length-1)+'}';
+			alert(obj);
+			return obj;
+		}
+		function del(node){
+			$(node).parent('div').parent('div').remove();		
+		}
+	});
+	
+
+	
+//	var obj = jQuery.parseJSON('{"1":"2","3":"4"}');
+//	obj['aaa']='bbb';
+//	alert(obj['1']);
+
+</script>
