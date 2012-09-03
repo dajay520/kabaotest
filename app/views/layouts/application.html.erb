@@ -2,10 +2,11 @@
 <html>
 	<head>
 		<title>Kabaotest</title>
-		<%= stylesheet_link_tag    "application", :media => "all" %>
+		<!--<%= stylesheet_link_tag    "application", :media => "all" %>-->
 		<%= stylesheet_link_tag    "styles", :media => "all" %>
 		<%= stylesheet_link_tag    "bootstrap-responsive", :media => "all" %>
-		<%= javascript_include_tag "application" %>
+		<!--<%= javascript_include_tag "application" %>-->
+		<script src="/assets/jquery.js?body=1" type="text/javascript"></script>
 		<%= csrf_meta_tags %>
 	</head>
 	<body data-spy="scroll" data-target=".subnav" data-offset="50">
@@ -16,6 +17,7 @@
 				<div class="container">
 					<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a>
 					<a class="brand" href="#">卡宝测试桩</a>
+					<!--
 					<div class="btn-group pull-right">
 						<a class="btn dropdown-toggle" data-toggle="dropdown" href="#"> <i class="icon-user"></i> Username <span class="caret"></span> </a>
 						<ul class="dropdown-menu">
@@ -28,10 +30,11 @@
 							</li>
 						</ul>
 					</div>
+					
 					<div class="nav-collapse">
 						<ul class="nav">
 							<li class="active">
-								<a href="/">主页</a>
+								<a href="/"></a>
 							</li>
 							<li>
 								<a href="#about"></a>
@@ -40,7 +43,7 @@
 								<a href="#contact"></a>
 							</li>
 						</ul>
-					</div><!--/.nav-collapse -->
+					</div>--><!--/.nav-collapse -->
 				</div>
 			</div>
 		</div>

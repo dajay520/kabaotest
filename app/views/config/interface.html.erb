@@ -5,16 +5,16 @@
 	<br/>
 	<table class="table table-striped">
 		<tr>
-		<th>
+		<th width='20%'>
 			条件名称
 		</th>
-	    <th>
+	    <th width='20%'>
 	    	当请求参数为:
 	    </th>
-	    <th>
+	    <th width='40%'>
 	    	响应数据
 	    </th>
-	    <th>
+	    <th width='20%'>
 	    	操作
 	    </th>
 	  </tr>
@@ -24,7 +24,25 @@
 	%>
 		<tr>
 			<td><%=con.name%></td>
-			<td><%=con.in%></td>
+			<td>
+				<%if con.in and con.in.strip != ''
+				i=0
+				begin
+				ActiveSupport::JSON.decode(con.in).each_pair do |k,v|
+				%>
+				<%=k%>=<%=v%><br/>
+				<%
+				end
+				rescue MultiJson::DecodeError
+					%>解析错误<%
+				end
+				else
+				%>
+				默认返回值，当所有条件都不匹配时。
+				<%
+			end
+				%>
+			</td>
 			<td><%=con.out%></td>
 			<td><a class="btn btn-danger" href='/config/<%=params[:id]%>/condition/del/<%=con.id%>'><i class="icon-trash icon-white"></i> 删除</a></td>
 		</tr>

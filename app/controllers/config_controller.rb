@@ -16,6 +16,13 @@ end
 def create_condition
   puts params[:in]
    cp = ConditionParams.new
+   
+   ocp = ConditionParams.where :in=>params[:in],:interface_id=>params[:id]
+   if ocp.size>0
+     @error_info='该请求参数的条件已存在！已存在的条件名称为:' + ocp[0].name
+     render :common_error
+     return 
+   end
    cp.in=params[:in]
    cp.out=params[:response_value]
    cp.name=params[:condition_name]

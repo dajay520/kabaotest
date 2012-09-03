@@ -7,13 +7,9 @@
 	<div class='well'>
 	<span class="badge">1</span>添加的条件中文说明
 		<div id='condition_name_div' class="control-group">
-	            <label class="control-label" for="focusedInput">
-	            	条件名称
-	            </label>
-	            <div class="controls">
-	              <input class="input-xlarge focused" id="condition_name" name="condition_name"  type="text" placeholder="关于条件的一些描述">
-				  <span id='condition_name_hint' class="help-inline"></span>
-	            </div>
+	    	<span>条件名称:</span>
+	        <input class="input-xlarge focused" id="condition_name" name="condition_name"  type="text" placeholder="关于条件的一些描述">
+			<span id='condition_name_hint' class="help-inline"></span>
 		</div>
 	</div>
 	<div class='well'>
@@ -22,15 +18,11 @@
 			<button  id='addc' class='btn' >添加一个条件</button>
 				<input type="checkbox" id="ocb" value="option1">
 				不使用任何请求参数作为响应条件
-			<button id='getjson' class='btn'>
-				测试一下JSON
-			</button>
-
 		</div>
 		<div id='dynamic_gen' class='row-fluid'>
 			<div class='row-fluid'>
-			<div class='span3'>参数名称:<input type="text" name="param_name[]" class='span8'/></div>
-			<div class='span4'>参数值:<input type="text" name="param_value[]" class='span12'/></div>
+			<div class='span2'>参数名称:<input type="text" id="param_name" name="param_name[]" class='span8'/></div>
+			<div class='span3'>参数值:<input type="text" id="param_value" name="param_value[]" class='span12'/></div>
 			</div>
 		</div>
 	</div>
@@ -55,10 +47,16 @@
 
 <script>
 	$(document).ready(function() {
+		var i = 0;
 		$("#addc").click(function(){
-			$('#dynamic_gen').append('<div class="row-fluid"><div class="span3 ">参数名称:<input type="text" name="param_name[]" class="span8"/></div>'+
-			'<div class="span4">参数值:<input type="text" name="param_value" class="span12"/></div>' +
-			'<div class="span3"><br/><button class="btn btn-danger" onclick="del(this);return false;"><i class="icon-trash icon-white"></i> 删除</button></div></div>');
+			$('#dynamic_gen').append('<div class="row-fluid"><div class="span2 "><div id="cg" class="control-group">参数名称:<input type="text" id="param_name" name="param_name[]" class="span8"/></div></div>'+
+			'<div class="span3"><div id="cg" class="control-group">参数值:<input type="text" id="param_value" name="param_value[]" class="span12"/></div></div>' +
+			'<div class="span5"><br/><button id="delbtn' + i +'" class="btn btn-danger" ><i class="icon-trash icon-white"></i> 删除</button>' +
+			'<span id="err" class="help-inline"></span></div></div>');
+			$("#delbtn"+i).click(function(){
+				del(this);
+			});
+			i++;
 			return false;
 		});
 		$("#ocb").click(function(){
@@ -75,8 +73,11 @@
 			if(!validate()){
 				return false;
 			}
-			$("#in_json").attr("value",getin());
-		
+			if($('#ocb').attr('checked')){
+				$("#in_json").attr("value","");
+			}else{
+				$("#in_json").attr("value",getin());
+			}
 		});
 		
 		$("#getjson").click(getin);
@@ -103,16 +104,28 @@
 			if($('#condition_name').attr('value')==''){
 				$('#condition_name_div').addClass('control-group error');
 				$('#con_hint').remove();
-				$('#condition_name_hint').append('<p id="con_hint">不能为空，随便填点什么吧。<p>')
+				$('#condition_name_hint').append('<span id="con_hint">不能为空，随便填点什么吧。</span>')
 				result = false;
 			}else{
 				$('#condition_name_div').removeClass('control-group error');
 				$('#con_hint').remove();
 			}
+			//校验动态传入参数
+			if(!$("#ocb").attr('checked'))
+			$('#dynamic_gen').find('input[id="param_name"]').each(function(i){
+				if(this.value==''){
+					$(this).parent('div').addClass('control-group error');
+					$(this).attr('placeholder','不能为空');
+					result=false;
+				}else{
+					$(this).parent('div').removeClass('control-group error');
+					$(this).attr('placeholder','');
+				}
+			})
 			if($('#response_value').attr('value')==''){
 				$('#response_value_div').addClass('control-group error');
 				$('#res_hint').remove();
-				$('#response_value_hint').append('<p id="res_hint">响应内容不能为空。<p>')
+				$('#response_value_hint').append('<span id="res_hint">响应内容不能为空。</span>')
 				result = false;
 			}else{
 				$('#response_value_div').removeClass('control-group error');
