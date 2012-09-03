@@ -24,12 +24,11 @@
     <%= f.text_field :remark,:placeholder=>"接口功能描述.."%>
   </div>
   <div class="field">
-    接口类型<br />
-    <%= f.text_field :type %>
-    <select>
-    	<option default>http</option>
-    	<option>soap</option>
-    	<option>tcp/socket</option>
+    接口类型(目前仅支持http)<br />
+    <select >
+    	<option default value='1'>http</option>
+    	<option value='2'>soap</option>
+    	<option value='3'>tcp/socket</option>
     </select>
   </div>
   <div class="actions">

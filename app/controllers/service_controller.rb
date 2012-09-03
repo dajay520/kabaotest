@@ -3,10 +3,9 @@ class ServiceController < ApplicationController
   def process(met)
     i = Interface.find_by_name_en params[:method]
     if i
-      
       i.condition_paramss.each do |cp|
         
-        if cp.in
+        if cp.in and cp.in.strip != ''
           begin
             flag=true
             ActiveSupport::JSON.decode(cp.in).each_pair do |k,v|
@@ -17,15 +16,20 @@ class ServiceController < ApplicationController
             end
             if flag
               @cpout = cp.out 
-              render :process
+              render :text=>@cpout
               return
             end
+            
           rescue MultiJson::DecodeError
           end
-          
+        else
+          render :text=>cp.out
+          return
         end
       end
+      
     end
+    
   render :process
   end
 end

@@ -1,4 +1,5 @@
 <div class='well'>
+	
 	<span class="label label-info">
 		已添加条件响应列表：
 	</span>
@@ -59,5 +60,24 @@
 	end
 	%>
 	</table>
+	<button class='btn' id='add_it_btn'>
+		添加条件
+	</button>
 </div>
+<div id='add_it'>
 	<%=render 'add_condition_params'%>
+</div>
+<script>
+	$(document).ready(function() {
+		$('#add_it').hide();
+		$('#add_it_btn').click(function(){
+			var add_it=$('#add_it');
+			
+			if(add_it.is(':hidden')){
+				add_it.show(200);
+			}else{
+				add_it.hide(200);
+			}
+		})
+	})
+</script>
