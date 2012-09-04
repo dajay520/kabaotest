@@ -1,6 +1,6 @@
 <div class='well'>
-	
-	<span class="label label-info">
+	<div id='loc_url' class="alert alert-success"></div>
+	<span  class="label label-info">
 		已添加条件响应列表：
 	</span>
 	<br/>
@@ -26,13 +26,19 @@
 		<tr>
 			<td><%=con.name%></td>
 			<td>
-				<%if con.in and con.in.strip != ''
+				<%
+				ps=''
+				if con.in and con.in.strip != ''
 				i=0
 				begin
 				ActiveSupport::JSON.decode(con.in).each_pair do |k,v|
+					ps +=k +'=' + v+'&'
 				%>
 				<%=k%>=<%=v%><br/>
 				<%
+				end
+				if ps != ''
+					ps = '?' + ps[0,ps.size-1]
 				end
 				rescue MultiJson::DecodeError
 					%>解析错误<%
@@ -44,8 +50,11 @@
 			end
 				%>
 			</td>
-			<td><%=con.out%></td>
-			<td><a class="btn btn-danger" href='/config/<%=params[:id]%>/condition/del/<%=con.id%>'><i class="icon-trash icon-white"></i> 删除</a></td>
+			<td style="word-break:break-all"><%=con.out%></td>
+			<td>
+				<a class="btn btn-danger btn-mini" href='/config/<%=params[:id]%>/condition/del/<%=con.id%>' title="删除"><i class="icon-trash icon-white"></i></a>
+				<a target="_blank" class="btn btn-info btn-mini" href='/services/<%=@interface.name_en + ps%>' title="调用测试"><i class="icon-play-circle icon-white"></i></a>
+			</td>
 		</tr>
 	<% 
 		end
@@ -69,6 +78,7 @@
 </div>
 <script>
 	$(document).ready(function() {
+		$('#loc_url').append('本接口调用地址:http://' + window.location.host + '/services/<%=@interface.name_en%>');
 		$('#add_it').hide();
 		$('#add_it_btn').click(function(){
 			var add_it=$('#add_it');

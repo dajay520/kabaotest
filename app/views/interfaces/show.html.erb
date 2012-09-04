@@ -1,25 +1,25 @@
-<div  class="alert alert-success"><%= notice %></div>
+<% if notice %><div  class="alert alert-success"><%= notice %></div><%end%>
 
 <p>
-  <b>Name cn:</b>
+  <b>接口中文名称:</b>
   <%= @interface.name_cn %>
 </p>
 
 <p>
-  <b>Name en:</b>
+  <b>接口英文名称:</b>
   <%= @interface.name_en %>
 </p>
 
 <p>
-  <b>Remark:</b>
+  <b>备注:</b>
   <%= @interface.remark %>
 </p>
 
 <p>
-  <b>Type:</b>
-  <%= @interface.type %>
+  <b>接口类型:</b>
+  http
 </p>
 
 
-<%= link_to 'Edit', edit_interface_path(@interface) %> |
-<%= link_to 'Back', interfaces_path %>
+<%= link_to '编辑', edit_interface_path(@interface) %> |
+<%= link_to '返回', interfaces_path %>

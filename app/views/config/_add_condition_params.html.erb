@@ -51,8 +51,8 @@
 		$("#addc").click(function(){
 			$('#dynamic_gen').append('<div class="row-fluid"><div class="span2 "><div id="cg" class="control-group">参数名称:<input type="text" id="param_name" name="param_name[]" class="span8"/></div></div>'+
 			'<div class="span3"><div id="cg" class="control-group">参数值:<input type="text" id="param_value" name="param_value[]" class="span12"/></div></div>' +
-			'<div class="span5"><br/><button id="delbtn' + i +'" class="btn btn-danger" ><i class="icon-trash icon-white"></i> 删除</button>' +
-			'<span id="err" class="help-inline"></span></div></div>');
+			'<div class="span5"><br/><button id="delbtn' + i +'" class="btn btn-danger btn-mini" ><i class="icon-trash icon-white"></i> 删除</button>' +
+			'</div></div>');
 			$("#delbtn"+i).click(function(){
 				del(this);
 			});
