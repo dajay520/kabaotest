@@ -56,8 +56,8 @@
 								接口列表
 							</li>
 							<% session[:menuList].each do |inter| %>
-							<li <%if inter.id.to_s==session[:selected]%>class='active'<%end%>>
-								<a href='/config/<%=inter.id%>'><%=inter.name_cn%></a>
+							<li <%if inter['id'].to_s==session[:selected]%>class='active'<%end%>>
+								<a href='/config/<%=inter['id']%>'><%=inter['name_cn']%></a>
 							</li>
 							<% end%>
 							

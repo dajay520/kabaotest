@@ -34,7 +34,7 @@
             <div class="controls">
               <textarea class="input-xlarge" id="response_value" name='response_value' rows="3"></textarea>
 			  <span id='response_value_hint' class="help-inline"></span>
-			  <button class='btn' onclick='return false;'>生成JSON</button>
+			  <!--<button class='btn' onclick='return false;'>生成JSON</button>-->
             </div>
           </div>
 
@@ -68,6 +68,9 @@
 				$('#dynamic_gen').show(200);
 			}
 		})
+		$("#ocb").click();
+		$("#addc").attr('disabled',true);
+		$('#dynamic_gen').hide();
 
 		$("#submit_create").click(function(){
 			if(!validate()){

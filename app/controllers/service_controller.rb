@@ -1,12 +1,14 @@
 #encoding: UTF-8
 class ServiceController < ApplicationController
   def process(met)
-    i = Interface.find_by_name_en params[:method]
+    i = Interface.find_by_name_en params[:service]
     if i
       ncp=nil
       i.condition_paramss.each do |cp|
-
         flag=true
+        if cp.status == '-1'
+          next
+        end
         if cp.in and cp.in.strip != ''
           begin
             ActiveSupport::JSON.decode(cp.in).each_pair do |k,v|

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120902075504) do
+ActiveRecord::Schema.define(:version => 20120905054811) do
 
   create_table "condition_params", :force => true do |t|
     t.string   "name"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(:version => 20120902075504) do
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
     t.integer  "interface_id"
+    t.string   "status"
   end
 
   create_table "interfaces", :force => true do |t|
