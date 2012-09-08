@@ -46,8 +46,8 @@ class ServiceController < ApplicationController
   end
   
   
-   def to_gbk
-     Iconv.conv("gbk//IGNORE","UTF-8//IGNORE",self)
+   def to_gbk(str)
+     Iconv.conv("gbk//IGNORE","UTF-8//IGNORE",str)
    end
    
   def test
