@@ -57,7 +57,7 @@
 					<a class="btn btn-mini"  title="调用测试"><i class="icon-play-circle icon-white"></i></a>
 					<a class="btn btn-success btn-mini" href='/config/modify/<%=con.id%>?status=0&interface_id=<%=@interface.id%>' title="使该条件生效"><i class="icon-ok icon-white"></i></a>
 				<%else%>
-					<a target="_blank" class="btn btn-info btn-mini" href='/api/kabao.do?action=<%=@interface.name_en + ps%>' title="调用测试"><i class="icon-play-circle icon-white"></i></a>
+					<a target="_blank" class="btn btn-info btn-mini" href='/api/kabao.do?method=<%=@interface.name_en + ps%>' title="调用测试"><i class="icon-play-circle icon-white"></i></a>
 					<a class="btn btn-inverse btn-mini" href='/config/modify/<%=con.id%>?status=-1&interface_id=<%=@interface.id%>' title="使该条件失效"><i class="icon-off icon-white"></i></a>
 				<%end%>
 			</td>
@@ -84,7 +84,7 @@
 </div>
 <script>
 	$(document).ready(function() {
-		$('#loc_url').append('本接口调用地址:http://' + window.location.host + '/api/kabao.do?action=<%=@interface.name_en%>');
+		$('#loc_url').append('本接口调用地址:http://' + window.location.host + '/api/kabao.do?method=<%=@interface.name_en%>');
 		$('#add_it').hide();
 		$('#add_it_btn').click(function(){
 			var add_it=$('#add_it');

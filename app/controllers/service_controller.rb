@@ -3,7 +3,9 @@ require 'iconv'
 class ServiceController < ApplicationController
   def process(met)
     response.headers["Content-Type"] = "text/html; charset=gbk" 
-    i = Interface.find_by_name_en params[:action]
+    i = Interface.find_by_name_en params[:method]
+    puts 'actrin'
+    puts i
     if i
       ncp=nil
       i.condition_paramss.each do |cp|
@@ -37,10 +39,10 @@ class ServiceController < ApplicationController
       return
       end
       #
-      render :text=>'没有匹配到任何条件'
+      render :text=>to_gbk('没有匹配到任何条件')
     return
     else
-      render :text=>'接口不存在'
+      render :text=>to_gbk('接口不存在')
     return
     end
 
