@@ -1,4 +1,5 @@
 #encoding: UTF-8
+require 'iconv'
 class ServiceController < ApplicationController
   def process(met)
     i = Interface.find_by_name_en params[:service]
@@ -20,7 +21,7 @@ class ServiceController < ApplicationController
           rescue MultiJson::DecodeError
           end
           if flag
-            @cpout = cp.out
+            @cpout = to_gbk cp.out
             render :text=>@cpout
           return
           end
@@ -42,5 +43,14 @@ class ServiceController < ApplicationController
     return
     end
 
+  end
+  
+  
+   def to_gbk
+     Iconv.conv("gbk//IGNORE","UTF-8//IGNORE",self)
+   end
+   
+  def test
+    render :process
   end
 end

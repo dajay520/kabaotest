@@ -1,5 +1,6 @@
 
 <form id='add_form' method='post' action='/config/create/<%=params[:id]%>'>
+	<%= csrf_meta_tag %>
 	<input type='hidden' id='in_json' name='in' value='2'>
 	<div class='row-fluid'>
 	<span class="label label-info">添加响应条件:</span>

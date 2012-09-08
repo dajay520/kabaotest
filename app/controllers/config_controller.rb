@@ -5,6 +5,11 @@ def index
 	
 end
 
+  def test
+    render 'partnerget.xml'
+  end
+  
+  
 def interface
    session[:selected]=params[:id] 
    session[:m_selected] = nil
