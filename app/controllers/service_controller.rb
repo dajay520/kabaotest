@@ -2,6 +2,7 @@
 require 'iconv'
 class ServiceController < ApplicationController
   def process(met)
+    response.headers["Content-Type"] = "text/html; charset=gbk" 
     i = Interface.find_by_name_en params[:service]
     if i
       ncp=nil
@@ -32,7 +33,7 @@ class ServiceController < ApplicationController
       end
       #如果接口走到这说明没有匹配到条件，那么如果存在默认返回值则返回默认值
       if ncp
-        render :text=>ncp.out
+        render :text=>to_gbk(ncp.out)
       return
       end
       #
@@ -48,6 +49,10 @@ class ServiceController < ApplicationController
   
    def to_gbk(str)
      Iconv.conv("gbk//IGNORE","UTF-8//IGNORE",str)
+   end
+   
+   def to_utf8(str)
+     Iconv.conv("UTF-8//IGNORE","gbk//IGNORE",str)
    end
    
   def test
