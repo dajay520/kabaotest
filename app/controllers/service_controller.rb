@@ -3,7 +3,7 @@ require 'iconv'
 class ServiceController < ApplicationController
   def process(met)
     response.headers["Content-Type"] = "text/html; charset=gbk" 
-    i = Interface.find_by_name_en params[:service]
+    i = Interface.find_by_name_en params[:action]
     if i
       ncp=nil
       i.condition_paramss.each do |cp|
