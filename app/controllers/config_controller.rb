@@ -70,4 +70,35 @@ def mod_condition
   redirect_to '/config/' + params[:interface_id]
 end
 
+#编辑条件，修改条件参数
+def go_to_edit
+  @con = ConditionParams.find_by_id params[:id]
+  if @con
+    render "_edit_condition"
+  else
+    @error_info="条件不存在或已被删除。"
+    render 'common_error'
+  end
+end
+
+def edit_commit
+    cp = ConditionParams.find_by_id params[:id]
+    ocp = ConditionParams.where(:interface_id=>cp.interface_id).where(:in=>params[:in]).where("status!='-1' or status is null" )
+    if ocp.size>0
+      cp.status='-1'
+    else
+      cp.status='0'
+    end
+    cp.in=params[:in]
+    cp.out=params[:response_value]
+    cp.name=params[:condition_name]
+    if cp.save
+      redirect_to '/config/'+cp.interface_id.to_s
+    else
+      @error_info="条件保存失败"
+      render 'common_error'
+    end
+    
+end
+
 end

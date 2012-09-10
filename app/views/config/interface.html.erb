@@ -50,7 +50,7 @@
 			end
 				%>
 			</td>
-			<td style="word-break:break-all"><%=con.out%></td>
+			<td style="word-break:break-all"><pre><%=con.out%></pre></td>
 			<td title="操作">
 				<a class="btn btn-danger btn-mini" href='/config/<%=params[:id]%>/condition/del/<%=con.id%>' title="删除"><i class="icon-trash icon-white"></i></a>
 				<%if con.status=='-1'%>
@@ -60,6 +60,7 @@
 					<a target="_blank" class="btn btn-info btn-mini" href='/api/kabao.do?method=<%=@interface.name_en + ps%>' title="调用测试"><i class="icon-play-circle icon-white"></i></a>
 					<a class="btn btn-inverse btn-mini" href='/config/modify/<%=con.id%>?status=-1&interface_id=<%=@interface.id%>' title="使该条件失效"><i class="icon-off icon-white"></i></a>
 				<%end%>
+				<a class="btn btn-info btn-mini" href='/config/edit/<%=con.id%>' title="修改条件"><i class="icon-edit icon-white"></i></a>
 			</td>
 		</tr>
 	<% 
@@ -95,5 +96,8 @@
 				add_it.hide(200);
 			}
 		})
+	
 	})
+	
+
 </script>

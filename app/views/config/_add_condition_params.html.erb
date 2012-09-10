@@ -1,7 +1,7 @@
 
 <form id='add_form' method='post' action='/config/create/<%=params[:id]%>'>
 	<%= csrf_meta_tag %>
-	<input type='hidden' id='in_json' name='in' value='2'>
+	<input type='hidden' id='in_json' name='in' value=''>
 	<div class='row-fluid'>
 	<span class="label label-info">添加响应条件:</span>
 	</div>
@@ -16,7 +16,7 @@
 	<div class='well'>
 		<span class="badge badge-success">2</span>当请求的条件满足以下条件时
 		<div class='row-fluid'>
-			<button  id='addc' class='btn' >添加一个条件</button>
+			<button  id='addc' class='btn btn-info' >添加一个条件</button>
 				<input type="checkbox" id="ocb" value="option1">
 				不使用任何请求参数作为响应条件
 		</div>
@@ -33,9 +33,9 @@
 		<div class='row-fulid'>
           <div id='response_value_div' class="control-group">
             <div class="controls">
-              <textarea class="input-xlarge" id="response_value" name='response_value' rows="3"></textarea>
+              <textarea class="input-xlarge" style="width:500px;height: 400px;" id="response_value" name='response_value' rows="3"></textarea>
 			  <span id='response_value_hint' class="help-inline"></span>
-			  <!--<button class='btn' onclick='return false;'>生成JSON</button>-->
+			  <button class='btn' id="formatJson" onclick='return false;'>JSON格式化</button>
             </div>
           </div>
 
@@ -84,7 +84,6 @@
 			}
 		});
 		
-		$("#getjson").click(getin);
 		
 		function getin(){
 			var obj = '{';
@@ -137,6 +136,17 @@
 			}
 			return result;
 		}
+		
+	
+
+	$("#formatJson").click(function(){
+		var jsonstr = $("#response_value").attr("value");
+		 try{
+		 	$("#response_value").attr("value",JsonUti.convertToString(JSON.parse(jsonstr))); 
+		 }catch(e){
+		 	alert('不是json格式');
+		 }
+	})
 	});
 	
 
