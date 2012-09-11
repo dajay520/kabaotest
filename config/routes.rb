@@ -7,11 +7,14 @@ Kabaotest::Application.routes.draw do
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action
-  match '/api/kabao.do' => 'service#process'
+  match 'api/kabao.do' => 'service#process'
   match 'config/:id' => 'config#interface'
   match 'config/create/:id' => 'config#create_condition'
   match 'config/:interface_id/condition/del/:id' => 'config#del_condition'
   match 'config/modify/:id' => 'config#mod_condition'
+  match 'config/edit/:id' => 'config#go_to_edit'
+  match 'config/edit_commit/:id' => 'config#edit_commit'
+  match 'services/partnerExterfaceFacade' => 'config#test'
   # Sample of named route:
   #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
   # This route can be invoked with purchase_url(:id => product.id)
