@@ -11,26 +11,33 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120908063814) do
+ActiveRecord::Schema.define(:version => 20120912085014) do
 
   create_table "condition_params", :force => true do |t|
-    t.string   "name"
-    t.text     "in",           :limit => 255
-    t.text     "out",          :limit => 255
-    t.string   "remark"
-    t.datetime "created_at",                  :null => false
-    t.datetime "updated_at",                  :null => false
-    t.integer  "interface_id"
-    t.string   "status"
+    t.string    "name"
+    t.text      "in"
+    t.text      "out"
+    t.string    "remark"
+    t.timestamp "created_at",   :null => false
+    t.timestamp "updated_at",   :null => false
+    t.integer   "interface_id"
+    t.string    "status"
   end
 
   create_table "interfaces", :force => true do |t|
-    t.string   "name_cn"
-    t.string   "name_en"
-    t.string   "remark"
-    t.string   "type"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string    "name_cn"
+    t.string    "name_en"
+    t.string    "remark"
+    t.string    "type"
+    t.timestamp "created_at", :null => false
+    t.timestamp "updated_at", :null => false
+  end
+
+  create_table "logs", :force => true do |t|
+    t.integer  "interface_id"
+    t.text     "logs"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
 end

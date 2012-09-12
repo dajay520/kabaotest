@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  interface_id: 
+  logs: MyText
+
+two:
+  interface_id: 
+  logs: MyText

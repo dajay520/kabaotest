@@ -101,4 +101,24 @@ def edit_commit
     
 end
 
+#获取日志
+def get_logs
+  @logs = Logs.where(:interface_id=>params[:id]).where('id>'+params[:logsid]).order('created_at')
+  @logs.each do |l|
+    l.created_at = l.created_at.strftime('%Y-%m-%d %H:%M:%S')
+  end
+  respond_to do |format|
+      format.json{ render json: @logs }
+    end 
+  
+end
+
+def show_logs
+  @logs = Logs.where(:interface_id=>params[:id]).order('created_at')
+  @maxlogid=0
+  if @logs[-1]
+    @maxlogid = @logs[-1].id
+  end
+  render '_logs'
+end
 end
