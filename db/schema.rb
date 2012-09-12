@@ -11,15 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120905054811) do
+ActiveRecord::Schema.define(:version => 20120908063814) do
 
   create_table "condition_params", :force => true do |t|
     t.string   "name"
-    t.string   "in"
-    t.string   "out"
+    t.text     "in",           :limit => 255
+    t.text     "out",          :limit => 255
     t.string   "remark"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
     t.integer  "interface_id"
     t.string   "status"
   end
