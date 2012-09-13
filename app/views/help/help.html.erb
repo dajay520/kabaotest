@@ -1,0 +1,120 @@
+<h2>一，前言</h2>
+	&nbsp;&nbsp;&nbsp;&nbsp;在我们日常开发过程中，经常会有与外部系统打交道的情况，例如barcode系统就经常需要与外部商户对接。
+	<br />如图:<br />
+<ul class="thumbnails">
+        <li class="span9">
+			<div class="thumbnail">
+           <img src="img/help/h1.png" />
+            <div class="caption">
+            </div>
+          </div>
+          </li>
+</ul>
+	&nbsp;&nbsp;&nbsp;&nbsp;而往往在开发过程中，外部商户也在同时开发，这种情况，我们想要跑通流程，就需要模拟一个外部商户的服务器来mock数据。<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;当然开发人员也可以通过很多方式自己模拟返回，但接口逻辑可能有很多种情况，每种情况的模拟都需要不断测试，再加上每个开发人员都通过自己的方式测试模拟，中间就产生了很多浪费，且效果不佳。<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;并且转测试的时候，测试MM可能根本没法模拟出来。内网测试平台上的MAPI接口测试工具只能模拟客户端调用服务端。（据说也可以模拟服务端，但不好用。）<br />
+	
+	&nbsp;&nbsp;&nbsp;&nbsp;在这样的情况下，此接口测试工具服务器就应运而生了，它目的就是模拟一台HTTP服务器来代替任何使用http+json（或者其他任何格式）的外部商户或者淘宝服务器。并提供简单易用的配置。
+	<br />如图:<br />
+<ul class="thumbnails">
+        <li class="span9">
+			<div class="thumbnail">
+            <img src="img/help/h2.png" />
+            <div class="caption">
+            	<h5>↑↑↑如上图 我们只需要修改网关连接的地址即可。</h5>
+            </div>
+          </div>
+          </li>
+</ul>
+
+<h2>二，接口配置实例</h2>
+<p>
+	<h3><span class="badge badge-success">（1）----------------------------------------------------新增接口----------------------------------------------------</span></h3>
+<ul class="thumbnails">
+        <li class="span9">
+			<div class="thumbnail">
+            <img src="img/help/h3.png" />
+            <div class="caption">
+              <h5>↑↑↑如上图 进入主页后，点击 <b>新增接口</b></h5>
+            </div>
+          </div>
+          </li>
+</ul>
+<ul class="thumbnails">
+        <li class="span9">
+			<div class="thumbnail">
+            <img src="img/help/h4.png" />
+            <div class="caption">
+              <h5>↑↑↑如上图 <b>接口名称</b>即要调用的接口名称</h5>
+            </div>
+          </div>
+          </li>
+</ul>	
+<ul class="thumbnails">
+        <li class="span9">
+			<div class="thumbnail">
+            <img src="img/help/h6.png" />
+            <div class="caption">
+              <h5>↑↑↑如上图 新增完成后，菜单栏中的接口列表就会出现对应接口。↑↑↑如上图 点击添加条件。</h5>
+            </div>
+          </div>
+          </li>
+</ul>
+	<h3><span class="badge badge-success">(2) ----------------------------------------------------配置返回值----------------------------------------------------</span></h3>
+	  <ul class="thumbnails">
+        <li class="span9">
+			<div class="thumbnail">
+            <img src="img/help/h8.png" alt="接口被调用日志">
+            <div class="caption">
+              <h5>↑↑↑如上图 随便填点什么，提交。</h5>
+            </div>
+          </div>
+          </li>
+</ul>
+
+  <ul class="thumbnails">
+        <li class="span9">
+			<div class="thumbnail">
+            <img src="img/help/h9.png" /><br />
+            <img src="img/help/h14.png" />
+            <div class="caption">
+              <h5>↑↑↑如上图 默认返回值表示，当没有匹配到任何条件的情况下即返回此值。点击<img src="img/help/h15.png" />测试调用一下。</h5>
+            </div>
+          </div>
+          </li>
+</ul>
+  <ul class="thumbnails">
+        <li class="span9">
+			<div class="thumbnail">
+            <img src="img/help/h10.png" />
+            <div class="caption">
+              <h5>↑↑↑如上图 再添加一条，这次添加一些条件，配置条件如图</h5>
+            </div>
+          </div>
+          </li>
+</ul>
+  <ul class="thumbnails">
+        <li class="span9">
+			<div class="thumbnail">
+            <img src="img/help/h11.png" /><br />
+			<img src="img/help/h12.png" />
+            <div class="caption">
+              <h5>↑↑↑如上图 添加完成后，点击<img src="img/help/h15.png" />测试调用一下。</h5>
+            </div>
+          </div>
+          </li>
+</ul>	
+	
+	<h3><span class="badge badge-success">(3)----------------------------------------------------查看日志----------------------------------------------------</span> </h3>
+
+</p>
+  <ul class="thumbnails">
+        <li class="span9">
+			<div class="thumbnail">
+            <img src="img/help/h13.png" alt="接口被调用日志">
+            <div class="caption">
+              <h5>↑↑↑如上图 点击 接口被调用日志,可以查看调用日志 </h5>
+            </div>
+          </div>
+          </li>
+</ul>
