@@ -18,6 +18,7 @@ Kabaotest::Application.routes.draw do
   
   match 'config/get_logs/:id/:logsid'=>'config#get_logs'
   match '/config/logs/show/:id'=>'config#show_logs'
+  match '/config/logs/del/:id'=>'config#del_logs'
   # Sample of named route:
   #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
   # This route can be invoked with purchase_url(:id => product.id)

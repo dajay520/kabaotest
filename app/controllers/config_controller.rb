@@ -121,4 +121,10 @@ def show_logs
   end
   render '_logs'
 end
+
+def del_logs
+  @maxlogid=0
+  Logs.where(:interface_id=>params[:id]).delete_all
+  render '_logs'
+end
 end
