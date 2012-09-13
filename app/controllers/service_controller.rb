@@ -10,7 +10,7 @@ class ServiceController < ApplicationController
       
       log_it i.id,'接收' +  request.request_method_symbol.to_s + '请求:' + request.url 
       if request.post?
-        log_it i.id,'post请求参数:' + request.query_parameters.to_s
+        log_it i.id,'post请求参数:' + request.body.to_s
       end
       ncp=nil
       i.condition_paramss.each do |cp|
