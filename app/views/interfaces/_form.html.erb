@@ -1,6 +1,6 @@
 <%= form_for(@interface,:class=>'form-horizontal') do |f| %>
   <% if @interface.errors.any? %>
-    <div id="error_explanation">
+    <div id="error_explanation" class="alert alert-error">
       <h2><%= pluralize(@interface.errors.count, "") %> 个校验错误:</h2>
 
       <ul>
