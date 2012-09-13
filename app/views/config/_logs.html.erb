@@ -5,13 +5,12 @@
           <div id='response_value_div' class="control-group">
             <div class="controls">
               <textarea id="logscon"  class="input-xlarge" style="width:100%;height: 500px;" id="response_value" name='response_value' rows="3" readonly="readonly">
-              		<% 
+				<%- 
               		if @logs
-              		@logs.each do |log|%>
-<%=log.created_at.strftime('%Y-%m-%d %H:%M:%S') + ':' + log.logs + "\n"-%>
-              		<%end
-              		end%>
-              </textarea>
+              		@logs.each do |log|-%>
+<%=log.created_at.strftime('%Y-%m-%d %H:%M:%S') + '-' + log.logs + "\n"-%>
+<%-end
+              		end-%></textarea>
 			  <div id="logscon"></div>
             </div>
           </div>
@@ -34,7 +33,7 @@
 	    	$.post("/config/get_logs/<%=params[:id]%>/"+maxlogid, function(data) {
 			$.each(data,function(index,obj){
 				maxlogid=obj.id
-				$('#logscon').append( obj.created_at + ":" + obj.logs + "\n" );
+				$('#logscon').append( obj.logs + "\n" );
 			})
 		} );
 	    }

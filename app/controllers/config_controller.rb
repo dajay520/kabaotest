@@ -105,7 +105,7 @@ end
 def get_logs
   @logs = Logs.where(:interface_id=>params[:id]).where('id>'+params[:logsid]).order('created_at')
   @logs.each do |l|
-    l.created_at = l.created_at.strftime('%Y-%m-%d %H:%M:%S')
+    l.logs = l.created_at.strftime('%Y-%m-%d %H:%M:%S')+ "-" + l.logs
   end
   respond_to do |format|
       format.json{ render json: @logs }
