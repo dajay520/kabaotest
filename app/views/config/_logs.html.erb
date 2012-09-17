@@ -1,10 +1,13 @@
 	<div class='well'>
 		<span class="badge badge-warning">logs</span>日志:
 		<a href="/config/logs/del/<%=params[:id]%>" id="getlogs" class="btn btn-info btn-mini">清空日志</a>
+		<div id='loc_url' class="alert alert-warn">
+		注意:仅显示最近100条日志<button type="button" class="close" data-dismiss="alert">&times;</button>
+		</div>
 		<div class='row-fulid'>
           <div id='response_value_div' class="control-group">
             <div class="controls">
-              <textarea id="logscon"  class="input-xlarge" style="width:100%;height: 500px;" id="response_value" name='response_value' rows="3" readonly="readonly">
+              <textarea id="logscon"  class="input-xlarge" style="width:100%;height: 500px;cursor:text" id="response_value" name='response_value' rows="3" readonly="readonly">
 				<%- 
               		if @logs
               		@logs.each do |log|-%>

@@ -114,7 +114,7 @@ def get_logs
 end
 
 def show_logs
-  @logs = Logs.where(:interface_id=>params[:id]).order('created_at')
+  @logs = Logs.where(:interface_id=>params[:id]).order('created_at desc').paginate(:page=>1,:per_page=>100).reverse
   @maxlogid=0
   if @logs[-1]
     @maxlogid = @logs[-1].id
