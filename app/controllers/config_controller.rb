@@ -132,7 +132,7 @@ end
 
 def show_response
   @cp = ConditionParams.find_by_id params[:id]
-  render :text=>@cp.out,:layout=>'show_response'
+  render :text=>@cp.out#,:layout=>'show_response'
 end
 
 end

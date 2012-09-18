@@ -59,8 +59,9 @@
 			</td>
 			<td style="word-break:break-all">
 				<%-if con.out and con.out.size >500 -%>
-				<a href="/config/condition/show_response/<%=con.id%>" target="_blank" style="text-decoration:none "  title="点击查看全部内容" >
-				<pre style="cursor:pointer"><%=con.out[0,500] + '... ...'-%></pre></a><%-else-%><pre><%=con.out-%></pre><%- end -%></td>
+				<pre id="<%=con.id%>" style="display: none"></pre>
+				<a href="/config/condition/show_response/<%=con.id%>" id="<%=con.id%>" data-remote="true" style="text-decoration:none "  title="点击展开全部内容" >
+				<pre><%=con.out[0,500] + '... ...'-%></pre></a><%-else-%><pre><%=con.out-%></pre><%- end -%></td>
 			<td title="操作">
 				<a class="btn btn-danger btn-mini" href='/config/<%=params[:id]%>/condition/del/<%=con.id%>' title="删除"  data-confirm="确定删除吗?" data-method="delete" rel="nofollow"><i class="icon-trash icon-white"></i></a>
 				<%if con.status=='-1'%>
@@ -109,6 +110,14 @@
 			}else{
 				add_it.hide(200);
 			}
+		})
+		
+		$("a[href*=show_response]").click(function(){
+			
+			$('#' + this.id).load( $(this).attr("href"));
+			$('#' + this.id).show();
+			$(this).mouseout();
+			$(this).remove();
 		})
 	
 	})
