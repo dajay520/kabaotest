@@ -1,4 +1,9 @@
 	<div class='well'>
+		<div class="tabbable" style="margin-bottom: 18px;">
+        <ul class="nav nav-tabs">
+          <li ><a href="/config/<%=params[:id]%>" data-toggle="tab">返回值配置</a></li>
+          <li class="active"><a data-toggle="tab">日志</a></li>
+        </ul>
 		<span class="badge badge-warning">logs</span>日志:
 		<a href="/config/logs/del/<%=params[:id]%>" id="getlogs" class="btn btn-info btn-mini">清空日志</a>
 		<div id='loc_url' class="alert alert-warn">

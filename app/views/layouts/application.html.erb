@@ -50,7 +50,7 @@
 					<div class="well sidebar-nav">
 						<ul class="nav nav-list">
 							<li class="nav-header">
-								接口列表
+								<i class="icon-th-list"></i>HTTP接口列表
 							</li>
 							<% session[:menuList].each do |inter| %>
 							<li <%if inter['id'].to_s==session[:selected]%>class='active'<%end%>>
@@ -59,7 +59,7 @@
 							<% end%>
 							
 							<li class="nav-header">
-								接口管理
+								<i class="icon-pencil"></i>接口管理
 							</li>
 							<li <%if 'new'==session[:m_selected]%>class='active'<%end%>>
 								<a href="/interfaces/new">新增接口</a>
