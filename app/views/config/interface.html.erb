@@ -16,10 +16,10 @@
 		<th width='10%'>
 			条件名称
 		</th>
-	    <th width='20%'>
+	    <th width='10%'>
 	    	当请求参数包含
 	    </th>
-	    <th width='40%'>
+	    <th width='50%'>
 	    	响应数据
 	    </th>
 	    <th width='20%'>
@@ -113,11 +113,13 @@
 		})
 		
 		$("a[href*=show_response]").click(function(){
+			var aa = $(this);
+			$('#' + this.id).load( $(this).attr("href"),function(){
+				aa.remove();
+				$('#' + this.id).show();
+			});
 			
-			$('#' + this.id).load( $(this).attr("href"));
-			$('#' + this.id).show();
 			$(this).mouseout();
-			$(this).remove();
 		})
 	
 	})
