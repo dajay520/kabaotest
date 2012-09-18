@@ -1,11 +1,12 @@
 	<div class='well'>
-		<div class="tabbable" style="margin-bottom: 18px;">
+		<div id='loc_url' class="alert alert-success"><button type="button" class="close" data-dismiss="alert">&times;</button></div>
+		<div class="tabbable" style="margin-bottom: 10px;">
         <ul class="nav nav-tabs">
           <li ><a href="/config/<%=params[:id]%>" data-toggle="tab">返回值配置</a></li>
           <li class="active"><a data-toggle="tab">日志</a></li>
         </ul>
-		<span class="badge badge-warning">logs</span>日志:
-		<a href="/config/logs/del/<%=params[:id]%>" id="getlogs" class="btn btn-info btn-mini">清空日志</a>
+		<span class="badge badge-warning">logs</span>操作:
+		<a href="/config/logs/del/<%=params[:id]%>" id="getlogs" class="btn btn-danger btn-mini">清空日志</a>
 		<div id='loc_url' class="alert alert-warn">
 		注意:仅显示最近100条日志<button type="button" class="close" data-dismiss="alert">&times;</button>
 		</div>
@@ -29,6 +30,7 @@
 	
 <script>
 	$(document).ready(function() {
+		$('#loc_url').append('本接口调用地址:http://' + window.location.host + '/api/kabao.do?method=<%=@interface.name_en%>');
 		var maxlogid=<%=@maxlogid%>;
 		$('#logscon').scrollTop( $('#logscon')[0].scrollHeight);
 	    $('#getlogs').bind("ajax:success", function(event, data) {      

@@ -115,6 +115,7 @@ end
 
 def show_logs
   @logs = Logs.where(:interface_id=>params[:id]).order('created_at desc').paginate(:page=>1,:per_page=>100).reverse
+  @interface=Interface.find(params[:id])
   @maxlogid=0
   if @logs[-1]
     @maxlogid = @logs[-1].id
@@ -124,6 +125,7 @@ end
 
 def del_logs
   @maxlogid=0
+  @interface=Interface.find(params[:id])
   Logs.where(:interface_id=>params[:id]).delete_all
   render '_logs'
 end
