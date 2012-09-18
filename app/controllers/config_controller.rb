@@ -129,4 +129,10 @@ def del_logs
   Logs.where(:interface_id=>params[:id]).delete_all
   render '_logs'
 end
+
+def show_response
+  @cp = ConditionParams.find_by_id params[:id]
+  render :text=>@cp.out,:layout=>'show_response'
+end
+
 end

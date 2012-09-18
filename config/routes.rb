@@ -20,6 +20,8 @@ Kabaotest::Application.routes.draw do
   match '/config/logs/show/:id'=>'config#show_logs'
   match '/config/logs/del/:id'=>'config#del_logs'
   
+  match '/config/condition/show_response/:id'=>'config#show_response'
+  
    match '/help'=>'help#help'
   # Sample of named route:
   #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase

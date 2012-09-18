@@ -57,7 +57,10 @@
 			end
 				%>
 			</td>
-			<td style="word-break:break-all"><pre><%=con.out%></pre></td>
+			<td style="word-break:break-all">
+				<%-if con.out and con.out.size >500 -%>
+				<a href="/config/condition/show_response/<%=con.id%>" target="_blank" style="text-decoration:none "  title="点击查看全部内容" >
+				<pre style="cursor:pointer"><%=con.out[0,500] + '... ...'-%></pre></a><%-else-%><pre><%=con.out-%></pre><%- end -%></td>
 			<td title="操作">
 				<a class="btn btn-danger btn-mini" href='/config/<%=params[:id]%>/condition/del/<%=con.id%>' title="删除"  data-confirm="确定删除吗?" data-method="delete" rel="nofollow"><i class="icon-trash icon-white"></i></a>
 				<%if con.status=='-1'%>
@@ -67,7 +70,7 @@
 					<a target="_blank" class="btn btn-info btn-mini" href='/api/kabao.do?method=<%=@interface.name_en + ps%>' title="调用测试"><i class="icon-play-circle icon-white"></i></a>
 					<a class="btn btn-inverse btn-mini" href='/config/modify/<%=con.id%>?status=-1&interface_id=<%=@interface.id%>' title="使该条件失效"><i class="icon-off icon-white"></i></a>
 				<%end%>
-				<a class="btn btn-info btn-mini" href='/config/edit/<%=con.id%>' title="修改条件"><i class="icon-edit icon-white"></i></a>
+				<a class="btn btn-info btn-mini" href='/config/edit/<%=con.id%>' title="修改条件" rel="tooltip" title="first tooltip"><i class="icon-edit icon-white"></i></a>
 			</td>
 		</tr>
 	<% 
@@ -94,6 +97,8 @@
 </div>
 <script>
 	$(document).ready(function() {
+		$('a').tooltip();
+		$('tr').tooltip();
 		$('#loc_url').append('本接口调用地址:http://' + window.location.host + '/api/kabao.do?method=<%=@interface.name_en%>');
 		$('#add_it').hide();
 		$('#add_it_btn').click(function(){
