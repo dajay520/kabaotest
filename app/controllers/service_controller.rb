@@ -30,7 +30,7 @@ class ServiceController < ApplicationController
           end
           if flag
             log_it i.id,'匹配到条件:' + cp.in + '，已响应。返回内容参见条件名称:'+cp.name 
-            @cpout = to_gbk cp.out
+            @cpout = pack_out(cp.out)
             render :text=>@cpout
           return
           end
@@ -42,7 +42,7 @@ class ServiceController < ApplicationController
       #如果接口走到这说明没有匹配到条件，那么如果存在默认返回值则返回默认值
       if ncp
         log_it i.id,'未匹配到任何条件，已使用默认响应。'
-        render :text=>to_gbk(ncp.out)
+        render :text=>pack_out(ncp.out)
       return
       end
       #
@@ -57,6 +57,11 @@ class ServiceController < ApplicationController
 
   end
   
+  #处理结果方法
+  #修改编码，生成表达式内容
+  def pack_out(str)
+    to_gbk(ApplicationController.helpers.expressProcess(str))
+  end
   
   def log_it(id,logs)
     log = Logs.new
